@@ -21,7 +21,7 @@ func getDomainName(weburl string) string {
       }
 }
 
-func isSameDomain(weburl string) bool {
+func isSameDomain(seedDomainName string, weburl string) bool {
     if(!isValidUrl(weburl)) {
         return false
     }

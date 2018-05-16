@@ -25,7 +25,7 @@ func main() {
                 seen[link] = true
                 n++
                 go func(link string) {
-                    worklist <- golang_site_crawler.crawl(link)
+                    worklist <- golang_site_crawler.crawl(seedDomainName, link)
                 }(link)
             }
         }

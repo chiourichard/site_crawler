@@ -13,7 +13,7 @@ var tokens = make(chan struct{}, 20)
 var regex string = ""
 var list []string
 
-func crawl(webUrl string) []string {
+func crawl(seedDomainName string, webUrl string) []string {
     fmt.Println(webUrl)
     tokens <- struct{}{} // acquire a token
     list, err := Extract(webUrl)
@@ -24,7 +24,7 @@ func crawl(webUrl string) []string {
     return list
 }
 
-func Extract(webUrl string) ([]string, error) {
+func Extract(seedDomainName string, webUrl string) ([]string, error) {
     resp, err := http.Get(webUrl)
     if err != nil {
         return nil, err
@@ -49,7 +49,7 @@ func Extract(webUrl string) ([]string, error) {
                 if err != nil {
                     continue // ignore bad URLs
                 }
-                if isSameDomain(link.String()){
+                if isSameDomain(seedDomainName,link.String()){
                     links = append(links, link.String())
                 }
             }
