@@ -5,8 +5,6 @@ import (
     "net/http"
     "golang.org/x/net/html"
     "log"
-    "net/url"
-    "regexp"
 )
 
 var tokens = make(chan struct{}, 20)
@@ -16,7 +14,7 @@ var list []string
 func crawl(seedDomainName string, webUrl string) []string {
     fmt.Println(webUrl)
     tokens <- struct{}{} // acquire a token
-    list, err := Extract(webUrl)
+    list, err := Extract(seedDomainName, webUrl)
     <-tokens // release the token
     if err != nil {
         log.Print(err)
@@ -69,17 +67,5 @@ func forEachNode(n *html.Node, pre, post func(n *html.Node)) {
     }
     if post != nil {
         post(n)
-    }
-}
-
-func isValidUrl(toTest string) bool {
-    var validHttp = regexp.MustCompile("^(http|https)://")
-    var matchHttp = validHttp.MatchString(toTest)
-
-    _, err := url.ParseRequestURI(toTest)
-    if err != nil || matchHttp == false {
-        return false
-    } else {
-        return true
     }
 }
