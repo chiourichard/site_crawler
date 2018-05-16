@@ -47,13 +47,13 @@ func Extract(seedDomainName string, webUrl string) ([]string, error) {
                 if err != nil {
                     continue // ignore bad URLs
                 }
-                if isSameDomain(seedDomainName,link.String()){
+                if IsSameDomain(seedDomainName,link.String()){
                     links = append(links, link.String())
                 }
             }
         }
     }
-    forEachNode(doc, visitNode, nil)
+    ForEachNode(doc, visitNode, nil)
 
     return links, nil
 }
@@ -63,7 +63,7 @@ func ForEachNode(n *html.Node, pre, post func(n *html.Node)) {
         pre(n)
     }
     for c := n.FirstChild; c != nil; c = c.NextSibling {
-        forEachNode(c, pre, post)
+        ForEachNode(c, pre, post)
     }
     if post != nil {
         post(n)

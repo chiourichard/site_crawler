@@ -23,11 +23,11 @@ func GetDomainName(weburl string) string {
 }
 
 func IsSameDomain(seedDomainName string, weburl string) bool {
-    if(!isValidUrl(weburl)) {
+    if(!IsValidUrl(weburl)) {
         return false
     }
 
-    if(seedDomainName == getDomainName(weburl)) {
+    if(seedDomainName == GetDomainName(weburl)) {
         return true
     } else {
         return false
