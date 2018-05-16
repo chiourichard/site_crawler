@@ -11,7 +11,7 @@ var tokens = make(chan struct{}, 20)
 var regex string = ""
 var list []string
 
-func crawl(seedDomainName string, webUrl string) []string {
+func Crawl(seedDomainName string, webUrl string) []string {
     fmt.Println(webUrl)
     tokens <- struct{}{} // acquire a token
     list, err := Extract(seedDomainName, webUrl)
@@ -58,7 +58,7 @@ func Extract(seedDomainName string, webUrl string) ([]string, error) {
     return links, nil
 }
 
-func forEachNode(n *html.Node, pre, post func(n *html.Node)) {
+func ForEachNode(n *html.Node, pre, post func(n *html.Node)) {
     if pre != nil {
         pre(n)
     }

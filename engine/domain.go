@@ -7,7 +7,7 @@ import (
       "regexp"
 )
 
-func getDomainName(weburl string) string {
+func GetDomainName(weburl string) string {
       u, err := url.Parse(weburl)
       if err != nil {
               log.Fatal(err)
@@ -22,7 +22,7 @@ func getDomainName(weburl string) string {
       }
 }
 
-func isSameDomain(seedDomainName string, weburl string) bool {
+func IsSameDomain(seedDomainName string, weburl string) bool {
     if(!isValidUrl(weburl)) {
         return false
     }
@@ -34,7 +34,7 @@ func isSameDomain(seedDomainName string, weburl string) bool {
     }
 }
 
-func isValidUrl(toTest string) bool {
+func IsValidUrl(toTest string) bool {
     var validHttp = regexp.MustCompile("^(http|https)://")
     var matchHttp = validHttp.MatchString(toTest)
 
