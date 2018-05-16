@@ -1,4 +1,4 @@
-package golang_site_crawler
+package engine
 
 import (
       "log"

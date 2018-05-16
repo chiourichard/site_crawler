@@ -2,6 +2,7 @@ package main
   
 import (
     "os"
+    "github.com/chiourichard/golang_site_crawler/engine"
 ) 
   
 var seedDomainName string = ""
