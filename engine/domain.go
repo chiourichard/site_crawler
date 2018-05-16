@@ -23,8 +23,7 @@ func getDomainName(weburl string) string {
 }
 
 func isSameDomain(seedDomainName string, weburl string) bool {
-   /*
-   if(!isValidUrl(weburl)) {
+    if(!isValidUrl(weburl)) {
         return false
     }
 
@@ -33,8 +32,6 @@ func isSameDomain(seedDomainName string, weburl string) bool {
     } else {
         return false
     }
-    */
-    return true
 }
 
 func isValidUrl(toTest string) bool {
