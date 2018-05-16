@@ -10,7 +10,7 @@ var seedDomainName string = ""
 func main() {
     worklist := make(chan []string)
     var n int // number of pending sends to worklist
-    seedDomainName = engine.getDomainName(os.Args[1])
+    seedDomainName = engine.GetDomainName(os.Args[1])
     // Start with the command-line arguments.
     n++
     go func() { worklist <- os.Args[1:] }()
@@ -25,7 +25,7 @@ func main() {
                 seen[link] = true
                 n++
                 go func(link string) {
-                    worklist <- engine.crawl(seedDomainName, link)
+                    worklist <- engine.Crawl(seedDomainName, link)
                 }(link)
             }
         }
