@@ -7,7 +7,7 @@ import (
     "fmt"
 )
 
-func CreateFolder(path string, mode string) (err error) {
+func CreateFolder(path string, mode) (err error) {
   if _, err := os.Stat(path); os.IsNotExist(err) {
     os.MkdirAll(path, mode)
   }
