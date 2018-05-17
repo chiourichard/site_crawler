@@ -7,7 +7,7 @@ import (
       "regexp"
 )
 
-var seedDomainName string = ""
+var SeedDomainName string = ""
 
 func GetDomainName(weburl string) string {
       u, err := url.Parse(weburl)
@@ -29,7 +29,7 @@ func IsSameDomain(weburl string) bool {
         return false
     }
 
-    if(seedDomainName == GetDomainName(weburl)) {
+    if(SeedDomainName == GetDomainName(weburl)) {
         return true
     } else {
         return false
