@@ -4,9 +4,10 @@ import (
     "os"
     "net/http"
     "io"
+    "fmt"
 )
 
-func CreateFolder(path string, mode int) (err error) {
+func CreateFolder(path string, mode string) (err error) {
   if _, err := os.Stat(path); os.IsNotExist(err) {
     os.MkdirAll(path, mode)
   }
