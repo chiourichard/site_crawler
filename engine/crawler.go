@@ -10,10 +10,10 @@ import (
 var tokens = make(chan struct{}, 20)
 var regex string = ""
 
-func Crawl(seedDomainName string, webUrl string) []string {
+func Crawl(webUrl string) []string {
     fmt.Println(webUrl)
     tokens <- struct{}{} // acquire a token
-    list, err := Extract(seedDomainName, webUrl)
+    list, err := Extract(webUrl)
     <-tokens // release the token
     if err != nil {
         log.Print(err)
@@ -21,7 +21,7 @@ func Crawl(seedDomainName string, webUrl string) []string {
     return list
 }
 
-func Extract(seedDomainName string, webUrl string) ([]string, error) {
+func Extract(webUrl string) ([]string, error) {
     resp, err := http.Get(webUrl)
     if err != nil {
         return nil, err
@@ -46,7 +46,7 @@ func Extract(seedDomainName string, webUrl string) ([]string, error) {
                 if err != nil {
                     continue // ignore bad URLs
                 }
-                if IsSameDomain(seedDomainName,link.String()){
+                if IsSameDomain(link.String()){
                     links = append(links, link.String())
                 }
             }
