@@ -5,6 +5,7 @@ import (
     "net/http"
     "golang.org/x/net/html"
     "log"
+    "net/url"
 )
 
 var tokens = make(chan struct{}, 20)
