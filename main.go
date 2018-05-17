@@ -14,7 +14,12 @@ func main() {
     go func() { worklist <- os.Args[1:] }()
 
     var folderPath string = engine.SeedDomainName 
-    engine.CreateFolder(folderPath, 0777) 
+    _, err := engine.CreateFolder(folderPath, 0777) 
+    if err != nil  {
+        return err
+    } else {
+        engine.FolderName = folderPath
+    }
 
     // Crawl the web concurrently.
     seen := make(map[string]bool)

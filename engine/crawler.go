@@ -9,10 +9,15 @@ import (
 
 var tokens = make(chan struct{}, 20)
 var regex string = ""
+var FolderName string = ""
 
 func Crawl(webUrl string) []string {
     fmt.Println(webUrl)
-    // DownloadFile(filepath, webUrl)
+    urlrs, err := url.Parse("http://example.com/path with spaces")
+    if err != nil {
+        log.Fatal(err)
+    }
+    DownloadFile(FolderName+"/"+urlrs.EscapedPath(), webUrl)
     tokens <- struct{}{} // acquire a token
     webUrlList, err := Extract(webUrl)
     <-tokens // release the token
