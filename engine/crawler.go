@@ -18,7 +18,7 @@ func Crawl(webUrl string) []string {
     if err != nil {
         log.Fatal(err)
     }
-    DownloadFile(FolderName+"/"+urlrs.EscapedPath(), webUrl)
+    DownloadFile(FolderName+"/"+webUrl, webUrl)
     tokens <- struct{}{} // acquire a token
     webUrlList, err := Extract(webUrl)
     <-tokens // release the token

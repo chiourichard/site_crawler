@@ -14,9 +14,9 @@ func main() {
     go func() { worklist <- os.Args[1:] }()
 
     var folderPath string = engine.SeedDomainName 
-    _, err := engine.CreateFolder(folderPath, 0777) 
+    err := engine.CreateFolder(folderPath, 0777) 
     if err != nil  {
-        return err
+        return 
     } else {
         engine.FolderName = folderPath
     }
