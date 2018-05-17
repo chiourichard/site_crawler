@@ -9,17 +9,16 @@ import (
 
 var tokens = make(chan struct{}, 20)
 var regex string = ""
-var List []string
 
 func Crawl(seedDomainName string, webUrl string) []string {
     fmt.Println(webUrl)
     tokens <- struct{}{} // acquire a token
-    List, err := Extract(seedDomainName, webUrl)
+    list, err := Extract(seedDomainName, webUrl)
     <-tokens // release the token
     if err != nil {
         log.Print(err)
     }
-    return List
+    return list
 }
 
 func Extract(seedDomainName string, webUrl string) ([]string, error) {
