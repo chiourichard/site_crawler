@@ -5,7 +5,6 @@ import (
     "net/http"
     "golang.org/x/net/html"
     "log"
-    "net/url"
 )
 
 var tokens = make(chan struct{}, 20)
@@ -14,11 +13,11 @@ var FolderName string = ""
 
 func Crawl(webUrl string) []string {
     fmt.Println(webUrl)
-    urlrs, err := url.Parse("http://example.com/path with spaces")
+    err := DownloadFile(FolderName+"/"+webUrl, webUrl)
     if err != nil {
-        log.Fatal(err)
+        log.Print(err)
     }
-    DownloadFile(FolderName+"/"+webUrl, webUrl)
+    fmt.Println(FolderName+"/"+webUrl)
     tokens <- struct{}{} // acquire a token
     webUrlList, err := Extract(webUrl)
     <-tokens // release the token
