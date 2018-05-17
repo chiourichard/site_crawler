@@ -4,29 +4,30 @@ import (
     "os"
     "github.com/chiourichard/golang_site_crawler/engine"
 ) 
-  
-var seedDomainName string = ""
 
 func main() {
     worklist := make(chan []string)
     var n int // number of pending sends to worklist
-    seedDomainName = engine.GetDomainName(os.Args[1])
+    engine.SeedDomainName = engine.GetDomainName(os.Args[1])
     // Start with the command-line arguments.
     n++
     go func() { worklist <- os.Args[1:] }()
 
+    var folderPath string = engine.SeedDomainName 
+    engine.CreateFolder(folderPath, 0777) 
 
     // Crawl the web concurrently.
     seen := make(map[string]bool)
 
     for ; n > 0; n-- {
-        for _, link := range engine.list {
-            if !seen[link] {
-                seen[link] = true
+        webUrlList := <-worklist
+        for _, webUrl := range webUrlList {
+            if !seen[webUrl] {
+                seen[webUrl] = true
                 n++
                 go func(link string) {
-                    worklist <- engine.Crawl(seedDomainName, link)
-                }(link)
+                    worklist <- engine.Crawl(webUrl)
+                }(webUrl)
             }
         }
     }
