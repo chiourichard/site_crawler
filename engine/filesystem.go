@@ -36,6 +36,7 @@ func DownloadFile(filepath string, url string) (err error) {
     fmt.Println(".....")
     return err
   }
+  fmt.Println("kkkkkkkk")
   defer resp.Body.Close()
 
   // Check server response
@@ -46,8 +47,9 @@ func DownloadFile(filepath string, url string) (err error) {
   // Writer the body to file
   _, err = io.Copy(out, resp.Body)
   if err != nil  {
+    fmt.Println("pppppppppppppp")
     return err
   }
-
+fmt.Println("ggggg")
   return nil
 }
