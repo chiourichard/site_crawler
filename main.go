@@ -25,14 +25,14 @@ func main() {
     seen := make(map[string]bool)
 
     for ; n > 0; n-- {
-        webUrlList := <-worklist
-        for _, webUrl := range webUrlList {
-            if !seen[webUrl] {
-                seen[webUrl] = true
+        list := <-worklist
+        for _, link := range list {
+            if !seen[link] {
+                seen[link] = true
                 n++
                 go func(link string) {
-                    worklist <- engine.Crawl(webUrl)
-                }(webUrl)
+                    worklist <- engine.Crawl(link)
+                }(link)
             }
         }
     }
