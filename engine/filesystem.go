@@ -23,22 +23,15 @@ func DownloadFile(filepath string, url string) (err error) {
   // Create the file
   out, err := os.Create(filepath)
   if err != nil  {
-    fmt.Println("aaaaa")
     return err
   }
-  fmt.Println("0000")
-  fmt.Println(filepath)
-  fmt.Println(url)
   defer out.Close()
-fmt.Println("33333333")
   // Get the data
   resp, err := http.Get(url)
   if err != nil {
-    fmt.Println(url)
-    fmt.Println(".....")
     return err
   }
-  fmt.Println("kkkkkkkk")
+
   defer resp.Body.Close()
 
   // Check server response
@@ -49,9 +42,8 @@ fmt.Println("33333333")
   // Writer the body to file
   _, err = io.Copy(out, resp.Body)
   if err != nil  {
-    fmt.Println("pppppppppppppp")
     return err
   }
-fmt.Println("ggggg")
+
   return nil
 }

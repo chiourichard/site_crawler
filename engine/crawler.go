@@ -13,6 +13,7 @@ var regex string = ""
 var FolderName string = ""
 
 func Crawl(webUrl string) []string {
+    fmt.Println(webUrl)
     err := DownloadFile(FolderName + "/" + strings.Replace(webUrl, "/", "_", -1), webUrl)
     if err != nil {
         log.Print(err)
