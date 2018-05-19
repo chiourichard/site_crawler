@@ -13,6 +13,7 @@ func GetDomainName(weburl string) string {
 	u, err := url.Parse(weburl)
 	if err != nil {
 		log.Fatal(err)
+		return ""
 	}
 	parts := strings.Split(u.Hostname(), ".")
 
