@@ -23,6 +23,7 @@ func DownloadFile(filepath string, url string) (err error) {
   // Create the file
   out, err := os.Create(filepath)
   if err != nil  {
+    fmt.Println("aaaaa")
     return err
   }
   defer out.Close()
