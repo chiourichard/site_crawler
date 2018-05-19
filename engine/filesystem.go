@@ -27,8 +27,9 @@ func DownloadFile(filepath string, url string) (err error) {
     return err
   }
   fmt.Println("0000")
+  fmt.Println(filepath)
   defer out.Close()
-
+fmt.Println("33333333")
   // Get the data
   resp, err := http.Get(url)
   if err != nil {
