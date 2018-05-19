@@ -12,14 +12,10 @@ var regex string = ""
 var FolderName string = ""
 
 func Crawl(webUrl string) []string {
-    fmt.Println(FolderName+"/"+webUrl)
-    fmt.Println("!!!")
-    fmt.Println(webUrl)
-    //err := DownloadFile(FolderName+"/"+webUrl, webUrl)
-    //if err != nil {
-     //   log.Print(err)
-    //}
-    // fmt.Println(FolderName+"/"+webUrl)
+    err := DownloadFile(FolderName+strings.Replace(webUrl, "/", "%", -1), webUrl)
+    if err != nil {
+        log.Print(err)
+    }
     tokens <- struct{}{} // acquire a token
     webUrlList, err := Extract(webUrl)
     <-tokens // release the token

@@ -2,7 +2,7 @@ package main
   
 import (
     "os"
-    "github.com/chiourichard/golang_site_crawler/engine"
+    "github.com/chiourichard/site_crawler/engine"
 ) 
 
 func main() {

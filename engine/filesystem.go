@@ -20,7 +20,6 @@ func CreateFolder(path string, mode os.FileMode) (err error) {
 }
 
 func DownloadFile(filepath string, url string) (err error) {
-  fmt.Println("!!!!")
   // Create the file
   out, err := os.Create(filepath)
   if err != nil  {
