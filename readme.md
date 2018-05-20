@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/chiourichard/site_crawler.svg?branch=master)](https://travis-ci.org/chiourichard / site_crawler)
 A site crawler tool that will crawl all pages with same domain name of a site to your computer:
 
 <!-- MarkdownTOC -->
