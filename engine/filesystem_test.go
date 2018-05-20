@@ -18,9 +18,10 @@ func TestCreateFolderSuccess(t *testing.T) {
 
 func TestCreateFolderFail(t *testing.T) {
 	var filepath string = "test"
-	var mode os.FileMode = 1111
+	var mode os.FileMode = 2
 
-	if err := CreateFolder(filepath, mode); err == nil {
+	err := CreateFolder(filepath, mode)
+	if err != nil {
 		t.Errorf("func Createfolder failed: %s", err)
 	}
 	os.RemoveAll(filepath)
