@@ -18,9 +18,9 @@ func TestCreateFolderSuccess(t *testing.T) {
 
 func TestCreateFolderFail(t *testing.T) {
 	var filepath string = "test"
-	var mode os.FileMode = 1234
+	var mode os.FileMode = 1111
 
-	if err := CreateFolder(filepath, mode); err != nil {
+	if err := CreateFolder(filepath, mode); err == nil {
 		t.Errorf("func Createfolder failed: %s", err)
 	}
 	os.RemoveAll(filepath)
@@ -77,7 +77,7 @@ func TestDownloadFileFailWithWrongUrl(t *testing.T) {
 	if err := CreateFolder(folderName, mode); err != nil {
 		t.Errorf("func Createfolder failed: %v", err)
 	}
-	var filepath string = "Wrongfolder" + "/" + url.PathEscape(webUrl)
+	var filepath string = folderName + "/" + url.PathEscape(webUrl)
 
 	err := DownloadFile(filepath, webUrl)
 	if err == nil {
@@ -94,7 +94,7 @@ func TestDownloadFileFailWithFailStatus(t *testing.T) {
 	if err := CreateFolder(folderName, mode); err != nil {
 		t.Errorf("func Createfolder failed: %v", err)
 	}
-	var filepath string = "Wrongfolder" + "/" + url.PathEscape(webUrl)
+	var filepath string = folderName + "/" + url.PathEscape(webUrl)
 
 	err := DownloadFile(filepath, webUrl)
 	if err == nil {
