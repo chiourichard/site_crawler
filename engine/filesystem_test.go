@@ -1,50 +1,40 @@
 package engine
-/*
+
 import (
-	"testing"
+	"net/url"
 	"os"
+	"testing"
 )
 
-
-func TestCreateFolderSuccess(t *testing.T) {
-	var filepath string = "/tmp/test"
+func TestCreateFolder(t *testing.T) {
+	var filepath string = "test"
 	var mode os.FileMode = 0777
 
 	if err := CreateFolder(filepath, mode); err != nil {
-		t.Errorf("Create folder %s failed: %v", filepath, err)
+		t.Errorf("func Createfolder failed: %s", err)
 	}
+	os.RemoveAll(filepath)
 }
 
-func TestCreateFolderFail(t *testing.T) {
-	var filepath string = "/tmp/test"
+func TestDownloadFileSuccess(t *testing.T) {
+	var webUrl string = "http://www.google.com"
+	var testDomainName string = GetDomainName(webUrl)
+
+	var folderName = testDomainName
 	var mode os.FileMode = 0777
 
-	if err := CreateFolder(filepath string, url string); err == nil {
-		t.Errorf("%s failed: %v", descr, err)
+	if err := CreateFolder(folderName, mode); err != nil {
+		t.Errorf("func Createfolder failed: %v", err)
 	}
-	if got == nil {
-		t.Errorf("Return Error")
-	}
-}
-*/
-/*
-func Test_Info(t *testing.T) {
-	d := New(&dummyDriver{records: records}, migrations, nil)
-	d.Migrate()
-	infos, err := d.Info()
+	var filepath string = folderName + "/" + url.PathEscape(webUrl)
 
+	err := DownloadFile(filepath, webUrl)
 	if err != nil {
-		t.Error("Must not return error")
-		t.FailNow()
+		t.Errorf("func Download failed: %s", err)
 	}
 
-	expectations := []Status{Applied, Ignored, Applied, Pending}
-
-	for i, info := range infos {
-		if expectations[i] != info.Status {
-			t.Errorf("Expected %s, got %s", expectations[i], info.Status)
-			t.FailNow()
-		}
+	if _, err := os.Stat(filepath); os.IsNotExist(err) {
+		t.Errorf("download file is not exist")
 	}
+	os.RemoveAll(folderName)
 }
-*/

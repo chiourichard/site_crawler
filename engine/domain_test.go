@@ -36,6 +36,6 @@ func TestDifferentDomainNameWithSeedDomain(t *testing.T) {
 	SeedDomainName = "kkbox.com"
 
 	if IsSameDomain(webUrl) {
-		t.Errorf("func IsSameDomain can't judege different domain")
+		t.Errorf("func IsSameDomain can't distinguish different domains")
 	}
 }
