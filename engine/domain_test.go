@@ -21,6 +21,14 @@ func TestGetDomainNameWithFalseUrl(t *testing.T) {
 		t.Errorf("func GetDomainName can't get url domain")
 	}
 }
+func TestGetDomainNameWithoutUrlResource(t *testing.T) {
+	var webUrl = "xxx"
+	var testDomainName string = GetDomainName(webUrl)
+
+	if testDomainName != "" {
+		t.Errorf("func GetDomainName can't get url domain")
+	}
+}
 
 func TestSameDomainNameWithSeedDomain(t *testing.T) {
 	var webUrl = "https://www.google.com"
@@ -37,6 +45,13 @@ func TestDifferentDomainNameWithSeedDomain(t *testing.T) {
 
 	if IsSameDomain(webUrl) {
 		t.Errorf("func IsSameDomain can't distinguish different domains")
+	}
+}
+func TestWrongUrlToGetDomain(t *testing.T) {
+	var webUrl = "ftp://www.google.com"
+
+	if IsSameDomain(webUrl) {
+		t.Errorf("func IsSameDomain can't distinguish wrong url")
 	}
 }
 func TestWrongUrlWillFail(t *testing.T) {
