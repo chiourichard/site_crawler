@@ -17,14 +17,14 @@ func TestCreateFolderSuccess(t *testing.T) {
 }
 
 func TestCreateFolderFail(t *testing.T) {
-	var filepath string = "test"
-	var mode os.FileMode = 2
+	var filepath string = "abc"
+	var mode os.FileMode = 0777
 
+	CreateFolder(filepath, mode)
 	err := CreateFolder(filepath, mode)
-	if err != nil {
+	if err == nil {
 		t.Errorf("func Createfolder failed: %s", err)
 	}
-	os.RemoveAll(filepath)
 }
 
 func TestDownloadFileSuccess(t *testing.T) {
