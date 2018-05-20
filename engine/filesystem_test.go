@@ -18,11 +18,11 @@ func TestCreateFolderSuccess(t *testing.T) {
 
 func TestCreateFolderFail(t *testing.T) {
 	var filepath string = "abc"
-	var mode os.FileMode = 0777
+	var mode os.FileMode = 000
 
-	CreateFolder(filepath, mode)
+	os.MkdirAll("abc", mode)
 	err := CreateFolder(filepath, mode)
-	if err == nil {
+	if err != nil {
 		t.Errorf("func Createfolder failed: %s", err)
 	}
 }
