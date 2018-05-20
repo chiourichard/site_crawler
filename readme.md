@@ -36,4 +36,4 @@ It's a command line tool:
 $ ./site_crawler https://www.google.com
 ```
 
-Then you can see a new folder created named `google.com` in the path you are in now. You can find the pages this tool crawl for you.
+Then you can see a new folder named `google.com` in the path you are in now. You can find the pages this tool collects for you.
