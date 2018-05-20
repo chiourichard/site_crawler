@@ -2,10 +2,11 @@ package engine
 
 import (
 	"fmt"
-	"net/http"
-	"golang.org/x/net/html"
 	"log"
+	"net/http"
 	"net/url"
+
+	"golang.org/x/net/html"
 )
 
 var tokens = make(chan struct{}, 20)
@@ -14,7 +15,8 @@ var FolderName string = ""
 
 func Crawl(webUrl string) []string {
 	fmt.Println(webUrl)
-	err := DownloadFile(FolderName + "/" + url.PathEscape(webUrl), webUrl)
+	fmt.Fprintf(w, webUrl)
+	err := DownloadFile(FolderName+"/"+url.PathEscape(webUrl), webUrl)
 	if err != nil {
 		log.Print(err)
 	}
@@ -52,7 +54,7 @@ func Extract(webUrl string) ([]string, error) {
 				if err != nil {
 					continue // ignore bad URLs
 				}
-				if IsSameDomain(link.String()){
+				if IsSameDomain(link.String()) {
 					links = append(links, link.String())
 				}
 			}
