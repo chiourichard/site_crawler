@@ -12,10 +12,11 @@ import (
 var tokens = make(chan struct{}, 20)
 var regex string = ""
 var FolderName string = ""
+var CrawledUrls []string = nil
 
 func Crawl(webUrl string) []string {
 	fmt.Println(webUrl)
-	fmt.Fprintf(w, webUrl)
+	CrawledUrls = append(CrawledUrls, webUrl)
 	err := DownloadFile(FolderName+"/"+url.PathEscape(webUrl), webUrl)
 	if err != nil {
 		log.Print(err)

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
@@ -11,7 +12,6 @@ import (
 
 func crawler(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm() //解析参数，默认是不会解析的
-	fmt.Fprintf(w, "URL.Path = %q\n", r.URL.Path)
 	var seedUrl string = ""
 	for k, v := range r.Form {
 		if k == "url" {
@@ -49,6 +49,9 @@ func crawler(w http.ResponseWriter, r *http.Request) {
 				}
 			}
 		}
+
+		result, _ := json.Marshal(CrawledUrls)
+		fmt.Fprintf(w, string(result))
 	}
 }
 
