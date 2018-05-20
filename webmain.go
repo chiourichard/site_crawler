@@ -50,7 +50,7 @@ func crawler(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 
-		result, _ := json.Marshal(CrawledUrls)
+		result, _ := json.Marshal(&engine.CrawledUrls)
 		fmt.Fprintf(w, string(result))
 	}
 }
