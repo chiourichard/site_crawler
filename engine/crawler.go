@@ -14,6 +14,7 @@ var regex string = ""
 var FolderName string = ""
 var CrawledUrls []string = nil
 
+// crawl a web page
 func Crawl(webUrl string) []string {
 	fmt.Println(webUrl)
 	CrawledUrls = append(CrawledUrls, webUrl)
@@ -30,6 +31,7 @@ func Crawl(webUrl string) []string {
 	return webUrlList
 }
 
+// Extract same domain links with seed from a web page
 func Extract(webUrl string) ([]string, error) {
 	response, err := http.Get(webUrl)
 	if err != nil {
@@ -66,6 +68,7 @@ func Extract(webUrl string) ([]string, error) {
 	return links, nil
 }
 
+// explore nodes in a page
 func ForEachNode(n *html.Node, pre, post func(n *html.Node)) {
 	if pre != nil {
 		pre(n)

@@ -39,3 +39,18 @@ func TestDifferentDomainNameWithSeedDomain(t *testing.T) {
 		t.Errorf("func IsSameDomain can't distinguish different domains")
 	}
 }
+func TestWrongUrlWillFail(t *testing.T) {
+	var webUrl = "ftp://www.google.com"
+
+	if IsValidUrl(webUrl) {
+		t.Errorf("func IsValidUrl can't distinguish a url is invalid.")
+	}
+}
+
+func TestRightUrlWillSuccess(t *testing.T) {
+	var webUrl = "https://tw.yahoo.com/"
+
+	if !IsValidUrl(webUrl) {
+		t.Errorf("func IsValidUrl can't distinguish a url is valid")
+	}
+}

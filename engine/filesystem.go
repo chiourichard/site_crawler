@@ -1,28 +1,30 @@
 package engine
 
 import (
-	"os"
-	"net/http"
-	"io"
 	"fmt"
+	"io"
+	"net/http"
+	"os"
 )
 
+// create folder for saving web pages
 func CreateFolder(path string, mode os.FileMode) (err error) {
 	if _, err := os.Stat(path); os.IsNotExist(err) {
 		os.MkdirAll(path, mode)
 	}
 
-	if err != nil  {
+	if err != nil {
 		return err
 	} else {
 		return nil
 	}
 }
 
+// download a web page to your filesystem
 func DownloadFile(filepath string, url string) (err error) {
 	// Create the file
 	out, err := os.Create(filepath)
-	if err != nil  {
+	if err != nil {
 		return err
 	}
 	defer out.Close()
@@ -41,7 +43,7 @@ func DownloadFile(filepath string, url string) (err error) {
 
 	// Writer the body to file
 	_, err = io.Copy(out, resp.Body)
-	if err != nil  {
+	if err != nil {
 		return err
 	}
 
