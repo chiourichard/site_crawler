@@ -11,7 +11,7 @@ import (
 )
 
 func crawler(w http.ResponseWriter, r *http.Request) {
-	r.ParseForm() //解析参数，默认是不会解析的
+	r.ParseForm()
 	var seedUrl string = ""
 	for k, v := range r.Form {
 		if k == "url" {
@@ -23,7 +23,7 @@ func crawler(w http.ResponseWriter, r *http.Request) {
 		worklist := make(chan []string)
 		var numWorklist int
 		engine.SeedDomainName = engine.GetDomainName(seedUrl)
-		// Start with the command-line arguments.
+
 		numWorklist++
 		go func() { worklist <- r.Form["url"] }()
 
@@ -56,8 +56,8 @@ func crawler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	http.HandleFunc("/", crawler)            //设置访问的路由
-	err := http.ListenAndServe(":9090", nil) //设置监听的端口
+	http.HandleFunc("/", crawler)
+	err := http.ListenAndServe(":9090", nil)
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	}
